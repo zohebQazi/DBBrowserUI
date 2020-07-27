@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30204.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiClient", "GuiClient.csproj", "{827768A5-A586-4C21-8143-B0FB874CABAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{827768A5-A586-4C21-8143-B0FB874CABAF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{827768A5-A586-4C21-8143-B0FB874CABAF}.Debug|x86.Build.0 = Debug|Any CPU
+		{827768A5-A586-4C21-8143-B0FB874CABAF}.Release|x86.ActiveCfg = Release|Any CPU
+		{827768A5-A586-4C21-8143-B0FB874CABAF}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33766565-5B23-4185-9EFE-7EE25B28D6DF}
+	EndGlobalSection
+EndGlobal

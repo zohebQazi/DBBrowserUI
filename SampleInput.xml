@@ -1,0 +1,81 @@
+﻿<?xml version=\"1.0\" encoding=\"utf-16\"?>
+<CSharpSourceCode xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">
+	<References>
+		<string>System.dll</string>
+		<string>OrchCommon.dll</string>
+		<string>OrchServer.exe</string>
+		<string>OrchestraServices.dll</string>
+		<string>OrchestraPersistenceHibernate.dll</string>
+		<string>System.Xml.dll</string>
+	</References>
+	<Usings>
+		<string>System</string>
+		<string>System.Collections.Generic</string>
+		<string>OrchestradeCommon.Contracts</string>
+		<string>OrchestradeCommon.Trading</string>
+		<string>OrchestradeCommon.Workflows</string>
+		<string>OrchestradeCommon.Util</string>
+		<string>OrchestradeCommon.RefData</string>
+	</Usings>
+	<c>
+		<string>public bool Check(IWorkflowContext&lt;Trade&gt; context, Transition current, IList&lt;WorkflowException&gt; exceptions)</string>
+		<string>                    {</string>
+		<string />
+		<string>            string isEconomic = \"IsEconomic\";</string>
+		<string>            Console.WriteLine(\"Loading Domain \" + isEconomic);</string>
+		<string>            Domain domain = Env.Current.StaticData.GetDomain(isEconomic);</string>
+		<string>            IList&lt;string&gt; economicChanges = domain.Values;</string>
+		<string />
+		<string>            //string[] economicChanges = domain.ToArray();</string>
+		<string>            Console.WriteLine(String.Join(\",\", economicChanges));</string>
+		<string />
+		<string>            Trade trade = context.Current;</string>
+		<string>            Trade prvTrade = context.Previous;</string>
+		<string />
+		<string>            IList&lt;AuditChange&gt; changes = null;</string>
+		<string />
+		<string>            if (prvTrade == null)</string>
+		<string>            {</string>
+		<string>                Console.WriteLine(\"previous Trade is null\");</string>
+		<string>            }</string>
+		<string />
+		<string>            try</string>
+		<string>            {</string>
+		<string>                Console.WriteLine(\"Fetching Trade diff\");</string>
+		<string>                changes = new List&lt;AuditChange&gt;();</string>
+		<string>                prvTrade.Diff(trade, changes);</string>
+		<string>            }</string>
+		<string>            catch (Exception e)</string>
+		<string>            {</string>
+		<string />
+		<string>            }</string>
+		<string>            </string>
+		<string>            Console.WriteLine(\"Trade diff fetched\");</string>
+		<string>            Console.WriteLine(\"Number of diff found : \" + changes.Count);</string>
+		<string />
+		<string>            foreach (AuditChange change in changes)</string>
+		<string>            {</string>
+		<string>                string changedItem = change.PropertyName;</string>
+		<string>                Console.WriteLine(\"Item Changed : \" + changedItem);</string>
+		<string>                foreach (String economicChange in economicChanges)</string>
+		<string>                {</string>
+		<string>                    if (economicChange.Equals(changedItem))</string>
+		<string>                    {</string>
+		<string>                        WorkflowException exception = new WorkflowException();</string>
+		<string>                        exception.ExceptionMessage = \"Cannot perform economical changes for action \" + current.Action;</string>
+		<string>                        exceptions.Add(exception);</string>
+		<string>                        return false;</string>
+		<string>                    }</string>
+		<string>                }</string>
+		<string>            }</string>
+		<string />
+		<string>            return true;</string>
+		<string />
+		<string>                    }</string>
+		<string>                    public void Update(IWorkflowContext&lt;Trade&gt; context, Transition current, IList&lt;WorkflowException&gt; exceptions)</string>
+		<string>                    {</string>
+		<string />
+		<string>                    }</string>
+		<string />
+	</ApplyBody>
+</CSharpSourceCode>
